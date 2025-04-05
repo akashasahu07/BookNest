@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 // Firebase
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -34,10 +33,9 @@ export class LoginComponent {
         const errorCode = error.code;
         const errorMessage = error.message;
 
-        alert('Wrong Email or Password..');
+        alert("Wrong Email or Password or Account doesn't exist..");
         this.email = "";
         this.password = "";
       });
-
   }
 }
