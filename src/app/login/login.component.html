@@ -3,14 +3,14 @@
         <h1>Login Page</h1>
 
         <div class="input-box">
-            <input type="email" name="email" placeholder="Email" required autofocus>
+            <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required autofocus>
         </div>
 
         <div class="input-box">
-            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required>
         </div>
 
-        <button type="button" class="btn">Login</button>
+        <button type="button" class="btn" (click)="onLogin()">Login</button>
 
         <a routerLink="/">Doesn't have an Account</a>
     </form>
