@@ -1,6 +1,9 @@
 .login-container {
-    background: #d79ff4;
+    background-image: url(/assets/login.jpg);
+    background-size: cover;
+    background-position: center;
     height: 100vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,13 +11,35 @@
     text-align: center;
     padding: 40px;
     font-family: cursive;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.2);
+    /* optional dark overlay */
+    z-index: 1;
 }
 
 form {
-    background-color: #cfde02;
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.1);
+    /* transparent white */
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px #000;
+    box-shadow: 0px 0px 20px #ffffff;
+    backdrop-filter: blur(2rem);
+    /* glass effect */
+    -webkit-backdrop-filter: blur(4px);
+    color: #fff;
 }
 
 .input-box {
@@ -32,7 +57,6 @@ form {
     font-size: 16px;
     color: #333;
     font-weight: 500;
-    box-shadow: 0px 0px 5px #000;
 }
 
 .input-box input:focus {
@@ -59,5 +83,5 @@ form {
 }
 
 a {
-    color: #000;
+    color: #ffffff;
 }
