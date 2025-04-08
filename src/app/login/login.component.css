@@ -13,6 +13,7 @@
     font-family: cursive;
     position: relative;
     overflow: hidden;
+    font-family: "Ubuntu", sans-serif;
 }
 
 .login-container::before {
@@ -57,6 +58,7 @@ form {
     font-size: 16px;
     color: #333;
     font-weight: 500;
+    font-family: "Ubuntu", sans-serif;
 }
 
 .input-box input:focus {
@@ -76,10 +78,11 @@ form {
     transition: background-color 0.3s ease-in-out;
     margin-bottom: 1rem;
     box-shadow: 0px 0px 10px #000;
+    font-family: "Ubuntu", sans-serif;
 }
 
 .btn:hover {
-    background-color: #2f64f8;
+    background-color: #0036cb;
 }
 
 a {

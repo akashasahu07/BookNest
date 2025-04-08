@@ -26,7 +26,7 @@ export class LoginComponent {
         const user = userCredential.user;
         // ...
 
-        alert('Valid Account, you are dedirected to Home Page..');
+        alert('Valid Account, you are redirected to Home Page..');
         this.router.navigate(['/home']); // Navigate to the Home Page
       })
       .catch((error) => {
