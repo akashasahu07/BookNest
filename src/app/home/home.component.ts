@@ -10,12 +10,20 @@ import { Component } from '@angular/core';
 export class HomeComponent {
   books = [
     {
-      img: '/assets/atomic-habit.png',
-      title: 'Atomic Habit'
+      img: '/assets/images/atomic-habit.png',
+      title: 'Atomic Habit',
+      book: '/assets/pdfs/Atomic-Habits.pdf'
     },
     {
-      img: '/assets/psy-money.png',
-      title: 'The Psychology of Money'
+      img: '/assets/images/psy-money.png',
+      title: 'The Psychology of Money',
+      book: '/assets/pdfs/Psychology-of-Money.pdf'
+    },
+    {
+      img: '/assets/images/atomic-habit.png',
+      title: 'Grow More'
     }
   ]
 }
+
+time 48
