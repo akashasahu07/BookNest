@@ -26,4 +26,4 @@ export class HomeComponent {
   ]
 }
 
-time 48
+time 48 
