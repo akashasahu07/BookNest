@@ -24,10 +24,19 @@
     display: flex; /* Enable Flexbox */
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
+    padding: 10px 20px; /* Add some horizontal padding for better spacing */
     margin-bottom: 30px;
     box-sizing: border-box;
     flex-wrap: nowrap; /* Prevent wrapping of header items */
+    background-color: #f8f8f8; /* Add a light grayish-white background */
+    border-bottom: 1px solid #eee; /* Optional: Add a subtle bottom border */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+.home-container.dark-mode .app-header {
+    background-color: #333; /* Dark mode header background */
+    border-bottom-color: #555; /* Dark mode subtle bottom border */
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.05); /* Add a subtle dark mode box shadow */
 }
 
 .logo {
@@ -357,11 +366,12 @@
 @media (max-width: 576px) {
     .app-header {
         align-items: flex-start;
+        align-items: center;
         justify-content: space-between;
     }
 
     .logo {
-        height: 30px; /* Adjust logo size for smaller screens if needed */
+        height: 60px; /* Adjust logo size for smaller screens if needed */
     }
 
     .header-actions {
@@ -435,6 +445,7 @@
     .app-header {
         justify-content: space-between;
         flex-direction: row;
+        align-items: center;
     }
 
     .logo {
@@ -484,6 +495,7 @@
 @media (min-width: 993px) {
     .app-header {
         flex-direction: row;
+        align-items: center;
     }
 
     .logo {
@@ -533,6 +545,7 @@
 @media (min-width: 1201px) {
     .app-header {
         flex-direction: row;
+        align-items: center;
     }
 
     .logo {
