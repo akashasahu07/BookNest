@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
 import { Router } from '@angular/router';
@@ -10,8 +10,20 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
-  constructor(private router: Router){}
+export class HomeComponent implements OnInit {
+  isDarkMode = false;
+  currentYear: number = new Date().getFullYear();
+
+  constructor(private router: Router) {
+    const storedTheme = localStorage.getItem('booknest-theme');
+    if (storedTheme === 'dark') {
+      this.isDarkMode = true;
+    }
+  }
+
+  ngOnInit(): void {
+    this.currentYear = new Date().getFullYear();
+  }
 
   books = [
     {
@@ -42,13 +54,17 @@ export class HomeComponent {
   ]
 
   onLogout() {
-    // const auth = getAuth();
     signOut(auth).then(() => {
-      // Sign-out successful.
+      this.router.navigate(['/login']);
     }).catch((error) => {
-      // An error happened.
+      console.error("Logout Error:", error);
+      alert("Error logging out.");
     });
+  }
 
-    this.router.navigate(['/login'])
+  toggleDarkMode() {
+    this.isDarkMode = !this.isDarkMode;
+    // Store the user's theme preference in local storage
+    localStorage.setItem('booknest-theme', this.isDarkMode ? 'dark' : 'light');
   }
 }

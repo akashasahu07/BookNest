@@ -1,49 +1,582 @@
+/* Import Merriweather font */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+
+/* Base styles for all screen sizes */
 .home-container {
-    height: 100vh;
-    width: 100vw;
-    background-image: url(/assets/home-bg.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    font-family: monospace;
-}
-
-marquee {
-    font-size: 22px;
-    background-color: #89d4f7;
-    padding: 10px;
-}
-
-.books {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 50px;
-}
-
-#book {
+    min-height: 100vh;
+    width: 100%; /* Use 100% instead of 100vw */
+    background: linear-gradient(135deg, #f0f2f0, #e0e0e0);
+    font-family: 'Merriweather', serif;
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    height: 400px;
-    width: 220px;
-    background-color: #02816e;
-    border-radius: 20px;
-    row-gap: 1rem;
-    justify-content: center;
     align-items: center;
-    cursor: pointer;
+    padding: 20px;
+    box-sizing: border-box; /* Ensures padding is inside the 100% width */
+    transition: background 0.3s ease, color 0.3s ease;
+    overflow-x: hidden; /* Keep this to prevent other potential horizontal overflows */
 }
 
-p {
-    color: #fff;
-    font-size: 18px;
+.home-container.dark-mode {
+    background: linear-gradient(135deg, #333, #222);
+    color: #eee;
+}
+
+.app-header {
+    width: 90%;
+    max-width: 1200px;
+    display: flex; /* Enable Flexbox */
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    flex-wrap: nowrap; /* Prevent wrapping of header items */
+}
+
+.logo {
+    height: 80px;
+}
+
+.header-actions {
+    display: flex; /* Enable Flexbox for buttons */
+    align-items: center;
+    flex-wrap: nowrap; /* Prevent wrapping of buttons */
+}
+
+.logout-button,
+.dark-mode-toggle {
+    background: none;
+    color: #555;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+    transition: color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.home-container.dark-mode .logout-button,
+.home-container.dark-mode .dark-mode-toggle {
+    color: #bbb;
+}
+
+.logout-button:hover,
+.dark-mode-toggle:hover {
+    color: #007bff;
+}
+
+.home-container.dark-mode .logout-button:hover,
+.home-container.dark-mode .dark-mode-toggle:hover {
+    color: #00bfff;
+}
+
+.logout-button i,
+.dark-mode-toggle i {
+    margin-right: 5px;
+}
+
+.welcome-header {
+    text-align: center;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.home-container.dark-mode .welcome-header {
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.welcome-header h1 {
+    font-size: 2.8em;
+    color: inherit;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+
+.book-list {
+    padding: 20px;
+    width: 90%;
+    max-width: 1100px;
+    margin-bottom: 40px;
+    box-sizing: border-box;
+}
+
+.book-list h2 {
+    font-size: 2.2em;
+    color: inherit;
+    margin-bottom: 25px;
+    text-align: center;
+    border-bottom: 2px dashed #ccc;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.home-container.dark-mode .book-list h2 {
+    border-bottom-color: #555;
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+.book-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.home-container.dark-mode .book-item {
+    background-color: #444;
+    box-shadow: 3px 3px 10px rgba(255, 255, 255, 0.05);
+}
+
+.book-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.15);
+}
+
+.home-container.dark-mode .book-item:hover {
+    box-shadow: 5px 5px 12px rgba(255, 255, 255, 0.1);
 }
 
 .book-img {
-    width: 200px;
+    width: 60%;
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
 }
 
-a {
-    color: #fff;
+.book-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: inherit;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.read-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #007bff, #00bfff);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out, color 0.3s ease;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 0.9em;
+    box-sizing: border-box;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.home-container.dark-mode .read-button {
+    background: linear-gradient(to right, #00bfff, #007bff);
+    color: #222;
+}
+
+.read-button:hover {
+    background: linear-gradient(to right, #00bfff, #007bff);
+    transform: scale(1.03);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.home-container.dark-mode .read-button:hover {
+    background: linear-gradient(to right, #007bff, #00bfff);
+    color: #111;
+}
+
+.app-footer {
+    width: 100%;
+    background-color: #f8f8f8;
+    /* Default light mode footer background */
+    color: #555;
+    /* Default light mode footer text color */
+    padding: 60px 20px;
+    /* Increased padding for more visual space */
+    box-sizing: border-box;
+    margin-top: 80px;
+    /* Increased margin for better separation */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-top: 1px solid #eee;
+    /* Subtle top border */
+    border-radius: 5px;
+}
+
+.home-container.dark-mode .app-footer {
+    background-color: #222;
+    /* Dark mode footer background */
+    color: #eee;
+    /* Dark mode footer text color */
+    border-top-color: #444;
+    /* Subtle dark mode top border */
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Slightly wider min width */
+    gap: 40px;
+    /* Increased gap for better spacing */
+}
+
+.footer-section {
+    margin-bottom: 30px;
+    padding: 1.7rem;
+}
+
+.footer-section h3 {
+    color: #333;
+    /* Default light mode footer heading color */
+    margin-bottom: 20px;
+    /* Increased margin below heading */
+    font-size: 1.6em;
+    /* Slightly larger heading */
+    border-bottom: 2px solid #ddd;
+    /* Subtle underline for heading */
+    padding-bottom: 10px;
+}
+
+.contact-icon {
+    margin-right: 7px;
+}
+
+.home-container.dark-mode .footer-section h3 {
+    color: #ccc;
+    /* Dark mode footer heading color */
+    border-bottom-color: #555;
+    /* Subtle dark mode underline */
+}
+
+.footer-section p,
+.footer-section ul {
+    line-height: 1.7;
+    /* Improved line height for readability */
+    font-size: 1em;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+    /* Spacing between list items */
+}
+
+.footer-section ul li a {
+    color: #777;
+    /* Default light mode footer link color */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.home-container.dark-mode .footer-section ul li a {
+    color: #bbb;
+    /* Dark mode footer link color */
+}
+
+.footer-section ul li a:hover {
+    color: #007bff;
+}
+
+.home-container.dark-mode .footer-section ul li a:hover {
+    color: #00bfff;
+}
+
+.social-links a {
+    display: inline-block;
+    margin-right: 15px;
+    /* Increased spacing between icons */
+    font-size: 1.4em;
+    /* Slightly larger icons */
+    color: #555;
+    /* Default light mode social icon color */
+    transition: color 0.3s ease;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.home-container.dark-mode .social-links a {
+    color: #bbb;
+    /* Dark mode social icon color */
+}
+
+.social-links a:hover {
+    color: #007bff;
+}
+
+.home-container.dark-mode .social-links a:hover {
+    color: #00bfff;
+}
+
+.footer-bottom {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    /* Increased padding */
+    background-color: #eee;
+    /* Default light mode footer bottom background */
+    color: #777;
+    /* Default light mode footer bottom text color */
+    margin-top: 40px;
+    /* Increased margin */
+    font-size: 0.95em;
+    /* Slightly larger font size */
+    border-top: 1px solid #ddd;
+    /* Subtle top border for bottom section */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.home-container.dark-mode .footer-bottom {
+    background-color: #333;
+    /* Dark mode footer bottom background */
+    color: #aaa;
+    /* Dark mode footer bottom text color */
+    border-top-color: #555;
+    /* Subtle dark mode top border */
+}
+
+/* Responsive adjustments */
+
+/* Small screens (phones) */
+@media (max-width: 576px) {
+    .app-header {
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    .logo {
+        height: 30px; /* Adjust logo size for smaller screens if needed */
+    }
+
+    .header-actions {
+        align-items: center;
+        width: 100%;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-left: auto; /* Push actions to the right */
+    }
+
+    .logout-button,
+    .dark-mode-toggle {
+        margin-left: 10px; /* Reduce spacing between buttons on small screens */
+        padding: 8px 12px; /* Slightly reduce button padding */
+        font-size: 0.9em; /* Slightly reduce button font size */
+    }
+
+    .welcome-header h1 {
+        font-size: 2.2em;
+    }
+
+    .book-list h2 {
+        font-size: 1.8em;
+    }
+
+    .books-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+    }
+
+    .book-item {
+        padding: 15px;
+    }
+
+    .book-title {
+        font-size: 1em;
+    }
+
+    .read-button {
+        padding: 8px 16px;
+        font-size: 0.8em;
+    }
+
+    .logout-button,
+    .dark-mode-toggle {
+        font-size: 0.9em;
+        padding: 8px 12px;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        text-align: center;
+        gap: 30px;
+    }
+
+    .footer-section {
+        margin-bottom: 0px;
+    }
+
+    .footer-section.links ul {
+        text-align: center;
+    }
+
+    .footer-section.contact {
+        text-align: center;
+    }
+}
+
+/* Medium screens (tablets) */
+@media (min-width: 577px) and (max-width: 992px) {
+    .app-header {
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
+    .logo {
+        height: 80px;
+    }
+
+    .welcome-header h1 {
+        font-size: 2.5em;
+    }
+
+    .book-list h2 {
+        font-size: 2em;
+    }
+
+    .books-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 18px;
+    }
+
+    .book-item {
+        padding: 18px;
+    }
+
+    .book-title {
+        font-size: 1.05em;
+    }
+
+    .read-button {
+        padding: 9px 18px;
+        font-size: 0.85em;
+    }
+
+    .logout-button,
+    .dark-mode-toggle {
+        font-size: 0.95em;
+        padding: 9px 14px;
+        margin-left: 12px;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 35px;
+    }
+}
+
+/* Large screens (desktops) */
+@media (min-width: 993px) {
+    .app-header {
+        flex-direction: row;
+    }
+
+    .logo {
+        height: 80px;
+    }
+
+    .welcome-header h1 {
+        font-size: 2.8em;
+    }
+
+    .book-list h2 {
+        font-size: 2.2em;
+    }
+
+    .books-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .book-item {
+        padding: 20px;
+    }
+
+    .book-title {
+        font-size: 1.1em;
+    }
+
+    .read-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .logout-button,
+    .dark-mode-toggle {
+        font-size: 1em;
+        padding: 10px 15px;
+        margin-left: 15px;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 40px;
+    }
+}
+
+/* Extra large screens */
+@media (min-width: 1201px) {
+    .app-header {
+        flex-direction: row;
+    }
+
+    .logo {
+        height: 80px;
+    }
+
+    .welcome-header h1 {
+        font-size: 3em;
+    }
+
+    .book-list h2 {
+        font-size: 2.5em;
+    }
+
+    .books-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+    }
+
+    .book-item {
+        padding: 25px;
+    }
+
+    .book-title {
+        font-size: 1.2em;
+    }
+
+    .read-button {
+        padding: 12px 24px;
+        font-size: 1em;
+    }
+
+    .logout-button,
+    .dark-mode-toggle {
+        font-size: 1.1em;
+        padding: 12px 18px;
+        margin-left: 20px;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+    }
 }
