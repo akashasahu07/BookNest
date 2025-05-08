@@ -3,7 +3,7 @@
 
     <div class="books">
         <div id="book" *ngFor="let i of books">
-            <img src="{{i.img}}" alt="Books image" class="book-img">
+            <img src="{{i.img}}" loading="lazy" alt="Books image" class="book-img">
             <p>{{i.title}}</p>
             <a href="{{i.book}}" target="_blank">Read Me</a>
         </div>
